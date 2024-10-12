@@ -6,7 +6,7 @@
  * 
  * **/
 
-class UserController {
+class CompanyController {
 
     private $model; // Define a property for model
     private $mainController;    // Main controller

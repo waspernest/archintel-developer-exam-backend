@@ -21,24 +21,6 @@ if (isset($_REQUEST['model'])) :
             $QueryTransformer = new QueryTransformer;
 
             switch ($modelClass) :
-                case 'Auth':
-                    $response = $methodClass->$method($_REQUEST);
-                    break;
-                case 'User':
-                    $response = $methodClass->$method($_REQUEST);
-                    break;
-                case 'Access_control':
-                    $response = $methodClass->$method($_REQUEST);
-                    break;
-                case 'Assoc':
-                    $response = $methodClass->$method($_REQUEST);
-                    break;
-                case 'Location':
-                    $response = $methodClass->$method($_REQUEST);
-                    break;
-                case 'Staff':
-                    $response = $methodClass->$method($_REQUEST);
-                    break;
                 default:
                     $response = $methodClass->$method($_REQUEST);
                     break;

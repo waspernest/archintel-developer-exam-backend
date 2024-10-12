@@ -1,0 +1,27 @@
+{
+	"Editor": {
+		"menu": {
+			"Dashboard": {
+		        "url": "/dashboard",
+		        "title": "Dashboard",
+		        "material_icon": "dashboard"
+		    },
+		    "Media" : {
+		        "url": "/all-media",
+		        "title": "All Media",
+		        "material_icon": "perm_media"
+		    },
+		    "Users" : {
+		        "url": "/users",
+		        "title": "Users",
+		        "material_icon": "group"
+		    },
+		    "Companies" : {
+		        "url": "/company",
+		        "title": "Companies",
+		        "material_icon": "business_center"
+		    }
+
+		}
+	}
+}
