@@ -23,5 +23,19 @@
 		    }
 
 		}
+	},
+	"Writer" : {
+		"menu": {
+			"Dashboard": {
+		        "url": "/dashboard",
+		        "title": "Dashboard",
+		        "material_icon": "dashboard"
+		    },
+		    "Media" : {
+		        "url": "/all-media",
+		        "title": "All Media",
+		        "material_icon": "perm_media"
+		    }
+		}
 	}
 }
