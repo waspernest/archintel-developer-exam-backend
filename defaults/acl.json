@@ -9,7 +9,7 @@
 		    "Media" : {
 		        "url": "/all-media",
 		        "title": "All Media",
-		        "material_icon": "perm_media"
+		        "material_icon": "perm_media" 
 		    },
 		    "Users" : {
 		        "url": "/users",
@@ -21,7 +21,6 @@
 		        "title": "Companies",
 		        "material_icon": "business_center"
 		    }
-
 		}
 	},
 	"Writer" : {
@@ -36,6 +35,8 @@
 		        "title": "All Media",
 		        "material_icon": "perm_media"
 		    }
-		}
+		},
+		"access": ["add-article", "edit-article", "view-article"],
+		"restrictions": ["users", "add-user", "edit-user"]
 	}
 }

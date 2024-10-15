@@ -157,46 +157,16 @@ class AssocController {
 
         switch($data['table']) :
 
-            case 'get_user_locations': //get all the locations from location_assoc table under the user id and get the location details from location table
-
-                $query = "SELECT 
-                            l.*
-                        FROM location_assoc as la
-                        INNER JOIN location as l ON la.loc_id = l.id
-                        WHERE la.uid = ?";
-
-                $params[] = $data['uid'];   
-
-                break;
-
-            case 'get_owners_staffs': // get all staffs information from staff table then get the location name from location table
-
+            case 'get_article_details_with_user_details': //get article details and writer details using writer id
                 $query = "SELECT
-                            s.*,
-                            l.location_name as location_name,
-                            sa.user_level as user_level
-                        FROM staff_assoc as sa
-                        INNER JOIN staff as s ON sa.staff_id = s.id
-                        INNER JOIN location as l on sa.loc_id = l.id
-                        WHERE sa.owner_id = ?";
+                            a.*,
+                            u.first_name as first_name,
+                            u.last_name as last_name
+                        FROM article as a
+                        INNER JOIN user as u ON a.writer = u.id
+                        WHERE a.writer = ?";
 
-                $params[] = $data['uid'];
-
-                break;
-
-            case 'get_staff_detail': // get the staff detail together with location detail
-
-                $query = "SELECT
-                            s.*,
-                            l.location_name as location_name,
-                            sa.user_level as user_level
-                        FROM staff_assoc as sa
-                        INNER JOIN staff as s ON sa.staff_id = s.id
-                        INNER JOIN location as l on sa.loc_id = l.id
-                        WHERE sa.staff_id = ?";
-
-                $params[] = $data['uid'];
-
+                $params[] = $data['id'];
                 break;
 
             default:
