@@ -48,7 +48,7 @@ class AuthController {
         if ($authLogin['code'] == 200 && !empty($authLogin['data'])):
 
             //get user access from defaults/acl.json
-            $aclFile = $_SERVER['DOCUMENT_ROOT'].'/archintel-developer-exam-backend/defaults/acl.json';
+            $aclFile = $_SERVER['DOCUMENT_ROOT'].'/defaults/acl.json';
             $aclData = file_get_contents($aclFile);
             $accessControl = json_decode($aclData, true);
 
