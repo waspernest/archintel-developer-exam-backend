@@ -30,9 +30,9 @@ class AssocController {
     public function test($data) {
 
         // Verify CSRF token using the headers stored in the constructor
-        if (!$this->mainController->verifyCsrfToken($this->headers)) {
-            return array('error' => 'Invalid CSRF token');
-        }
+        // if (!$this->mainController->verifyCsrfToken($this->headers)) {
+        //     return array('error' => 'Invalid CSRF token');
+        // }
 
         $response = array(
             'code' => 200,
@@ -61,9 +61,9 @@ class AssocController {
     public function insert($data) {
 
         // Verify CSRF token using the headers stored in the constructor
-        if (!$this->mainController->verifyCsrfToken($this->headers)) {
-            return array('error' => 'Invalid CSRF token');
-        }
+        // if (!$this->mainController->verifyCsrfToken($this->headers)) {
+        //     return array('error' => 'Invalid CSRF token');
+        // }
 
         if (isset($data['table'])) {
             $data['model'] = $data['table'];
@@ -83,9 +83,9 @@ class AssocController {
     public function update($data) {
 
         // Verify CSRF token using the headers stored in the constructor
-        if (!$this->mainController->verifyCsrfToken($this->headers)) {
-            return array('error' => 'Invalid CSRF token');
-        }
+        // if (!$this->mainController->verifyCsrfToken($this->headers)) {
+        //     return array('error' => 'Invalid CSRF token');
+        // }
 
         if (isset($data['table'])) {
             $data['model'] = $data['table'];
@@ -105,9 +105,9 @@ class AssocController {
     public function retrieve($data) {
 
         // Verify CSRF token using the headers stored in the constructor
-        if (!$this->mainController->verifyCsrfToken($this->headers)) {
-            return array('error' => 'Invalid CSRF token');
-        }
+        // if (!$this->mainController->verifyCsrfToken($this->headers)) {
+        //     return array('error' => 'Invalid CSRF token');
+        // }
 
         if (isset($data['table'])) {
             $data['model'] = $data['table'];
@@ -119,17 +119,17 @@ class AssocController {
             unset($data['method']);
         }
 
-        $retrieveQueryParams = $this->QueryTransformer->prepareQuery($data);
-        return $retrieve = $this->model->executeQuery('retrieve', $retrieveQueryParams['query'], $retrieveQueryParams['params']);
+        return $retrieveQueryParams = $this->QueryTransformer->prepareQuery($data);
+        //return $retrieve = $this->model->executeQuery('retrieve', $retrieveQueryParams['query'], $retrieveQueryParams['params']);
 
     }
 
     public function delete($data) {
 
         // Verify CSRF token using the headers stored in the constructor
-        if (!$this->mainController->verifyCsrfToken($this->headers)) {
-            return array('error' => 'Invalid CSRF token');
-        }
+        // if (!$this->mainController->verifyCsrfToken($this->headers)) {
+        //     return array('error' => 'Invalid CSRF token');
+        // }
 
         if (isset($data['table'])) {
             $data['model'] = $data['table'];
@@ -169,11 +169,25 @@ class AssocController {
                 $params[] = $data['id'];
                 break;
 
+            case 'get_article_details_with_user_details_by_slug': //get article details and writer details using article link(slug)
+                $query = "SELECT
+                            a.*,
+                            u.first_name as first_name,
+                            u.last_name as last_name
+                        FROM article as a
+                        INNER JOIN user as u ON a.writer = u.id
+                        WHERE a.link = ?";
+
+                $params[] = $data['slug'];
+                break;
+
+
             default:
                 break;
 
         endswitch;
 
+        //return $params;
         return $return = $this->model->executeQuery('retrieve', $query, $params);
 
     }

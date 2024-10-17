@@ -21,7 +21,8 @@
 		        "title": "Companies",
 		        "material_icon": "business_center"
 		    }
-		}
+		},
+		"access": ["users", "add-user", "edit-user", "add-article", "edit-article", "view-article"]
 	},
 	"Writer" : {
 		"menu": {

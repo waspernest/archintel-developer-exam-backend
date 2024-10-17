@@ -9,27 +9,41 @@ class MainController {
         $this->model = new $modelClass(); // Instantiate the model class
     }
 
-    public function test($data) {
-        
+    public function upload_parts_sequentially($data) {
+
         global $QueryTransformer;
 
-        $hashedPassword = password_hash("password123", PASSWORD_DEFAULT);
-
-        $insertData = array(
-        	"model" => "user",
-        	"action" => "insert",
-        	"insert" => array(
-        		"name" => "Admin 1",
-        		"email" => "admin@email.com",
-        		"password" => $hashedPassword
-        	)
+        $retData = array(
+            "model" => $data['table'],
+            "action" => "retrieve",
+            "retrieve" => array("id", "content"),
+            "condition" => $data['condition']
         );
 
-        $insertQuery = $QueryTransformer->prepareQuery($insertData);
-        return $insert = $this->model->executeQuery('insert', $insertQuery['query'], $insertQuery['params']);
+        $retrieveQueryParams = $QueryTransformer->prepareQuery($retData);
+        $retrieve = $this->model->executeQuery('retrieve', $retrieveQueryParams['query'], $retrieveQueryParams['params']);
 
+        if ($retrieve['code'] == 200 && !empty($retrieve['data'])) :
+
+            $current_content = $retrieve['data'][0]['content'];
+            $new_content = $current_content.$data['parts'];
+            
+            $updateData = array(
+                "model" => $data['table'],
+                "action" => "update",
+                "update" => array(
+                    "content" => $new_content
+                ),
+                "condition" => array(
+                    "id" => $retrieve['data'][0]['id']
+                )
+            );
+
+            $updateQueryParams = $QueryTransformer->prepareQuery($updateData);
+            return $update = $this->model->executeQuery('update', $updateQueryParams['query'], $updateQueryParams['params']);
+
+        endif;
     }
-
 
     public function getUserCsrfToken($uid) {
 
