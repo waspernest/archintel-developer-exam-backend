@@ -22,7 +22,7 @@
 		        "material_icon": "business_center"
 		    }
 		},
-		"access": ["users", "add-user", "edit-user", "add-article", "edit-article", "view-article"]
+		"access": ["users", "add-user", "edit-user", "add-article", "edit-article", "view-article", "company", "add-company", "edit-company"]
 	},
 	"Writer" : {
 		"menu": {
